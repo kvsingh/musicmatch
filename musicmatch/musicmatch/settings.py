@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+gwb)^%(pzaoa+7ym)uo&v)bfi$@593va0l@93bn3&@66+uvpd'
+SECRET_KEY = 'b5a20b1a7bb23659e9636681c80363dd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,7 +36,31 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'match',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+
 )
+
+SITE_ID = 2
+
+LOGIN_REDIRECT_URL = "/"
+SOCIALACCOUNT_QUERY_EMAIL = True
+#SOCIALACCOUNT_ADAPTER = 'match.FacebookAdapter'
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', 'user_likes'],
+        #'METHOD': 'js_sdk'  # instead of 'oauth2'
+        'METHOD': 'oauth2',
+        'FIELDS': ['music', 'name', 'id']
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,3 +105,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+'''TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    #'allauth.account.context_processors.account',
+   # 'allauth.socialaccount.context_processors.socialaccount',
+    'django.contrib.auth.context_processors.auth',
+
+)'''
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Already defined Django-related contexts here
+
+                # `allauth` needs this from django
+                'django.core.context_processors.request',
+                # `allauth` specific context processors
+                'django.contrib.auth.context_processors.auth',
+            ],
+        },
+    },
+]
+
+AUTHENTICATION_BACKENDS = (
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+)
