@@ -61,7 +61,10 @@ def index(request):
             uid = friend['id']
             friend_data = get_data(uid)
             my_data_music = get_music_uuids(my_data['music'])
-            friend_data_music = get_music_uuids(friend_data['music'])
+            try:
+                friend_data_music = get_music_uuids(friend_data['music'])
+            except:
+                friend_data_music = None
             music_similarity = similarity(my_data_music, friend_data_music)
             print music_similarity
             similarities.append((friend['name'], music_similarity))
