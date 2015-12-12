@@ -49,6 +49,7 @@ def index(request):
     #SocialApp.objects.all()
 
     b = authenticate(request.user.id)
+    similarities = None
     if b is not None:
         my_data = b.extra_data
 
