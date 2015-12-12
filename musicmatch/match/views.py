@@ -6,6 +6,8 @@ from allauth.socialaccount.models import SocialAccount
 import requests
 
 def similarity(user1, user2):
+    if user1 is None or user2 is None:
+        return 0
     a = len(user1)
     b = len(user2)
     print a, b
