@@ -12,13 +12,24 @@
 {% if request.user.is_authenticated %}
 
     <a href="/accounts/logout/">Log out</a>
+
+    <br/><br/>
+
+    Hi,
     {% if request.user.first_name or request.user.last_name %}
         {{ request.user.first_name }} {{ request.user.last_name }}
     {% else %}
         {{ request.user.username }}
     {% endif %}
-    {{ a }}
+    !
 
+    <br/><br/>
+
+    Your friends who use musicmatch: <br/><br/>
+
+    {% for friend in similarities %}
+    {{ friend.0 }} <br/> {{ friend.1 }}
+    {% endfor %}
 
 {% else %}
 {% providers_media_js %}

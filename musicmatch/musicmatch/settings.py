@@ -53,10 +53,10 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 #SOCIALACCOUNT_ADAPTER = 'match.FacebookAdapter'
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'SCOPE': ['email', 'user_likes'],
+        'SCOPE': ['email', 'user_likes', 'user_friends'],
         #'METHOD': 'js_sdk'  # instead of 'oauth2'
         'METHOD': 'oauth2',
-        'FIELDS': ['music', 'name', 'id']
+        'FIELDS': ['music', 'name', 'id', 'friends']
     }
 }
 
