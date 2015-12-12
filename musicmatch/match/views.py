@@ -52,15 +52,15 @@ def index(request):
     if b is not None:
         my_data = b.extra_data
 
-    similarities = []
-    for friend in my_data['friends']['data']:
-        uid = friend['id']
-        friend_data = get_data(uid)
-        my_data_music = get_music_uuids(my_data['music'])
-        friend_data_music = get_music_uuids(friend_data['music'])
-        music_similarity = similarity(my_data_music, friend_data_music)
-        print music_similarity
-        similarities.append((friend['name'], music_similarity))
+        similarities = []
+        for friend in my_data['friends']['data']:
+            uid = friend['id']
+            friend_data = get_data(uid)
+            my_data_music = get_music_uuids(my_data['music'])
+            friend_data_music = get_music_uuids(friend_data['music'])
+            music_similarity = similarity(my_data_music, friend_data_music)
+            print music_similarity
+            similarities.append((friend['name'], music_similarity))
 
     context = RequestContext(request, {
         'similarities': similarities,
