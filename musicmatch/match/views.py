@@ -26,12 +26,15 @@ def authenticate(user_id):
     return b
 
 def get_data(uid):
-    account_uid = SocialAccount.objects.filter(uid=uid, provider='facebook')
-    if(len(account_uid)>0):
-        b = account_uid[0]
-    else:
+    try:
+        account_uid = SocialAccount.objects.filter(uid=uid, provider='facebook')
+        if(len(account_uid)>0):
+            b = account_uid[0]
+        else:
+            return None
+        return b.extra_data
+    except:
         return None
-    return b.extra_data
 
 def get_music_uuids(data):
     music_ids = []
