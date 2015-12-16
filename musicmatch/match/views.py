@@ -55,6 +55,8 @@ def index(request):
 
     b = authenticate(request.user.id)
     similarities = None
+    my_data = None
+    data = None
     if b is not None:
         my_data = b.extra_data
 
@@ -68,13 +70,14 @@ def index(request):
             except:
                 friend_data_music = None
             music_similarity = similarity(my_data_music, friend_data_music)
-            print music_similarity
-            similarities.append((friend['name'], music_similarity))
+            music_similarity *= 100
+            similarities.append((friend['name'], '''friend['picture']['data']['url']''', "{0:.2f}".format(music_similarity)))
 
-    context = RequestContext(request, {
-        'similarities': similarities,
-    })
-
+        data = {
+            'similarities': similarities,
+            'my_picture': my_data['picture']['data']['url']
+        }
+    context = RequestContext(request, data)
     template = loader.get_template('match/index.html')
     return HttpResponse(template.render(context))
 
