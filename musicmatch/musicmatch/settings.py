@@ -60,7 +60,6 @@ SITE_ID = 2
 
 LOGIN_REDIRECT_URL = "/"
 SOCIALACCOUNT_QUERY_EMAIL = True
-#SOCIALACCOUNT_ADAPTER = 'match.FacebookAdapter'
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'SCOPE': ['email', 'user_likes', 'user_friends'],
@@ -72,25 +71,15 @@ SOCIALACCOUNT_PROVIDERS = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-'''MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)'''
-
 ROOT_URLCONF = 'musicmatch.urls'
 
 WSGI_APPLICATION = 'musicmatch.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
 SOCIAL_AUTH_FACEBOOK_KEY = '940739895963856'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b5a20b1a7bb23659e9636681c80363dd'
+
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -152,11 +141,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 # Already defined Django-related contexts here
-
                 # `allauth` needs this from django
-                #'django.core.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                #'django.core.context_processors.request',
                 # `allauth` specific context processors
                 'django.contrib.auth.context_processors.auth',
             ],

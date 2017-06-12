@@ -83,4 +83,3 @@ def index(request):
     template = loader.get_template('match/index.html')
     return render(request, 'match/index.html', context)
     #return HttpResponse(template.render(context, request))
-
