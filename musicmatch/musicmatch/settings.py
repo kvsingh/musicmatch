@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-54-254-143-249.ap-southeast-1.compute.amazonaws.com', 'localhost']
 
 
 # Application definition
@@ -124,6 +124,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'static/'
 ]
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 '''TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     #'allauth.account.context_processors.account',

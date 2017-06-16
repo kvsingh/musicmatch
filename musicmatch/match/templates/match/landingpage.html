@@ -1,0 +1,40 @@
+{% include "match/header.html" %}
+{% load socialaccount %}
+{% load staticfiles %}
+
+{% providers_media_js %}
+<header class="intro">
+<div class="intro-body">
+	<div class="container">
+
+        <div class="row" style="text-align:center">
+            <div class="column" style="margin:auto">
+				<h1 class="brand-heading">MUSIC MATE</h1>
+			<p class="intro-text" style="margin:auto">Match your music taste with your friends</p>
+            <p class="intro-text" style="margin:auto">Connect with people who are into similar music</p>
+            <p class="intro-text" style="margin:auto">Find your next favourite band/artist</p>
+            </div>
+		</div>
+
+        <div class="row">
+            <form class="form-signin">
+            {#<h2 class="form-signin-heading">Please sign in</h2>#}
+                <br/>
+                <a href='{% provider_login_url "facebook" method="oauth2" %}' class="btn btn-block btn-social btn-facebook">Sign in with facebook
+                <i class="fa fa-facebook"></i>
+                </a>
+            </form>
+        </div>
+
+	</div>
+</div>
+
+</header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/jquery.easing.min.js" %}"></script>
+<script src="{% static "js/theme.js" %}"></script>
+
+</body>
+</html>

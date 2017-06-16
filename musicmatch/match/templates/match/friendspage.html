@@ -1,0 +1,58 @@
+{% include "match/header.html" %}
+{% include "match/navbar.html" with my_picture=my_picture %}
+{% load socialaccount %}
+{% load staticfiles %}
+
+<div class="container">
+
+    {% comment %}
+    <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><img src="{{ my_picture }}"></img></li>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <li role="presentation"><a href="/accounts/logout/" class="btn btn-primary">Log Out</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Music Mate</h3>
+    </div>
+    {% endcomment %}
+
+    <br/><br/><br/><br/><br/><br/><br/>
+    <div class="jumbotron" style="background-color:black">
+        <h2>Hi,
+    {% if request.user.first_name or request.user.last_name %}
+        {{ request.user.first_name }} {{ request.user.last_name }}
+    {% else %}
+        {{ request.user.username }}
+    {% endif %}
+    !
+
+    </h2>
+        <p class="lead">
+            {% if similarities %}
+            {{ similarities|length }}
+            {% else %}
+            0
+            {% endif %}
+            of your {{ num_friends }} friends use Music Mate: <br/><br/>
+    <div class="row marketing">
+
+    {% for friend in similarities %}
+        <div class="col-lg-6">
+          <h4>{{ friend.0 }}</h4>
+          <h4><img src="{{ friend.1 }}"></img> </h4>
+          <h4>{{ friend.2 }}</h4>
+        </div>
+    {% endfor %}
+
+    </div>
+    </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/jquery.easing.min.js" %}"></script>
+<script src="{% static "js/theme.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+navbar-home, musicmate, about, feedback
+
+
+
+
+website optimization - caching the likes in db
+deploy script on aws - checkout from git and then deploy
